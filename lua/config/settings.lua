@@ -14,3 +14,4 @@ vim.o.scrolloff = 3
 vim.cmd 'autocmd BufEnter * set formatoptions-=cro'
 vim.cmd 'autocmd BufEnter * setlocal formatoptions-=cro'
 vim.o.completeopt = 'menuone,noinsert,noselect'
+vim.g.highlightedyank_highlight_duration = 200

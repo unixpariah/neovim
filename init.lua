@@ -17,6 +17,7 @@ vim.opt.rtp:prepend(lazypath)
 -- Plugins
 require('lazy').setup({
   -- Rust
+  { 'machakann/vim-highlightedyank' },
   {
     'mrcjkb/rustaceanvim',
     version = '^4',
