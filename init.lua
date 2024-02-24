@@ -1,5 +1,6 @@
-vim.g.mapleader = ' '
+vim.g.mapleader = ' ' -- Set mapleader to space
 
+-- Install lazy if not installed
 local lazypath = vim.fn.stdpath 'data' .. '/lazy/lazy.nvim'
 if not vim.loop.fs_stat(lazypath) then
   vim.fn.system {
@@ -13,57 +14,64 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
+-- Plugins
 require('lazy').setup({
+  -- Rust
+  {
+    'mrcjkb/rustaceanvim',
+    version = '^4',
+    ft = { 'rust' },
+  },
+  { 'hrsh7th/nvim-cmp' },
+  { 'hrsh7th/cmp-nvim-lsp' },
+  { 'hrsh7th/cmp-vsnip' },
+  { 'hrsh7th/vim-vsnip' },
+  { 'hrsh7th/cmp-path' },
+  { 'hrsh7th/cmp-buffer' },
+
+  { 'neovim/nvim-lspconfig' },
   { 'nvimdev/dashboard-nvim', event = 'VimEnter' },
-  { "rcarriga/nvim-notify" },
-  { "MunifTanjim/nui.nvim" },
+  { 'rcarriga/nvim-notify' },
+  { 'MunifTanjim/nui.nvim' },
   { 'nvim-tree/nvim-web-devicons' },
   { 'akinsho/bufferline.nvim' },
-  { "andweeb/presence.nvim" },
+  { 'andweeb/presence.nvim' },
   { 'folke/noice.nvim' },
   { 'nvim-lua/plenary.nvim' },
   { 'nvim-telescope/telescope.nvim' },
   { 'nvim-telescope/telescope-fzf-native.nvim' },
   { 'nvim-treesitter/nvim-treesitter' },
   { 'nvim-treesitter/nvim-treesitter-textobjects' },
-  { 'catppuccin/nvim', },
-  { 'mrcjkb/rustaceanvim' },
-  { "mattn/emmet-vim" },
-  { "github/copilot.vim" },
-  { "jiangmiao/auto-pairs" },
-  { 'tpope/vim-fugitive' },
-  { 'tpope/vim-rhubarb' },
-  { 'tpope/vim-sleuth' },
-  { 'neovim/nvim-lspconfig' },
+  { 'catppuccin/nvim' },
+  { 'mattn/emmet-vim' },
+  { 'github/copilot.vim' },
+  { 'jiangmiao/auto-pairs' },
   { 'j-hui/fidget.nvim' },
-  { 'folke/neodev.nvim' },
-  { 'L3MON4D3/LuaSnip' },
-  { 'hrsh7th/nvim-cmp' },
-  { 'saadparwaiz1/cmp_luasnip' },
-  { 'hrsh7th/cmp-nvim-lsp' },
-  { 'hrsh7th/cmp-path' },
-  { 'rafamadriz/friendly-snippets' },
   { 'folke/which-key.nvim' },
-  { 'lukas-reineke/indent-blankline.nvim', main = "ibl", opts = {} },
-  { 
-    "christoomey/vim-tmux-navigator" ,
+  { 'lukas-reineke/indent-blankline.nvim', main = 'ibl', opts = {} },
+  { 'stevearc/conform.nvim' },
+  { 'hrsh7th/nvim-compe' },
+  {
+    'christoomey/vim-tmux-navigator',
     cmd = {
-    "TmuxNavigateLeft",
-    "TmuxNavigateDown",
-    "TmuxNavigateUp",
-    "TmuxNavigateRight",
-    "TmuxNavigatePrevious",
+      'TmuxNavigateLeft',
+      'TmuxNavigateDown',
+      'TmuxNavigateUp',
+      'TmuxNavigateRight',
+      'TmuxNavigatePrevious',
     },
     keys = {
-      { "<c-h>", "<cmd><C-U>TmuxNavigateLeft<cr>" },
-      { "<c-j>", "<cmd><C-U>TmuxNavigateDown<cr>" },
-      { "<c-k>", "<cmd><C-U>TmuxNavigateUp<cr>" },
-      { "<c-l>", "<cmd><C-U>TmuxNavigateRight<cr>" },
-      { "<c-\\>", "<cmd><C-U>TmuxNavigatePrevious<cr>" },
-    }
-},
+      { '<c-h>', '<cmd><C-U>TmuxNavigateLeft<cr>' },
+      { '<c-j>', '<cmd><C-U>TmuxNavigateDown<cr>' },
+      { '<c-k>', '<cmd><C-U>TmuxNavigateUp<cr>' },
+      { '<c-l>', '<cmd><C-U>TmuxNavigateRight<cr>' },
+      { '<c-\\>', '<cmd><C-U>TmuxNavigatePrevious<cr>' },
+    },
+  },
 }, {})
 
-require("themes")
-require("config")
-require("plugins")
+-- Configurations
+require 'themes'
+require 'config'
+require 'plugins'
+require 'lsp'

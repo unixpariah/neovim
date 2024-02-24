@@ -1,10 +1,10 @@
-require("plugins.telescope")
-require("plugins.autoformat")
-require("plugins.which-key")
-require("plugins.tree-sitter")
-require("plugins.bufferline")
-require("plugins.dashboard")
-require("plugins.ibl")
-require("plugins.noice")
-require("plugins.notify")
-require('neodev').setup()
+require 'plugins.telescope'
+require 'plugins.which-key'
+require 'plugins.tree-sitter'
+require 'plugins.bufferline'
+require 'plugins.dashboard'
+require 'plugins.ibl'
+require 'plugins.noice'
+require 'plugins.notify'
+require 'plugins.conform'
+require 'plugins.cmp'

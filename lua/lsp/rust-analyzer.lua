@@ -1,26 +1,25 @@
-local lspconfig = require('lspconfig')
-local on_attach = function(client, bufnr)
-end
+local function on_attach(client, buffer) end
 
-local capabilities = vim.lsp.protocol.make_client_capabilities()
-capabilities.textDocument.completion.completionItem.snippetSupport = true
+local opts = {
+  tools = {
+    runnables = {
+      use_telescope = true,
+    },
+    inlay_hints = {
+      auto = true,
+      show_parameter_hints = false,
+      parameter_hints_prefix = '',
+      other_hints_prefix = '',
+    },
+  },
 
-lspconfig.rust_analyzer.setup {
-  cmd = { "/run/current-system/sw/bin/rust-analyzer" },
-  on_attach = on_attach,
-  capabilities = capabilities,
-  settings = {
-    ["rust-analyzer"] = {
-      assist = {
-        importMergeBehavior = "last",
-        importPrefix = "by_self",
-        importGranularity = "module",
-      },
-      cargo = {
-        loadOutDirsFromCheck = true,
-      },
-      procMacro = {
-        enable = true,
+  server = {
+    on_attach = on_attach,
+    settings = {
+      ['rust-analyzer'] = {
+        checkOnSave = {
+          command = 'clippy',
+        },
       },
     },
   },
