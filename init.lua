@@ -14,8 +14,13 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require('lazy').setup({
-  { 'lukas-reineke/indent-blankline.nvim' },
-  { 'numToStr/Comment.nvim' },
+  { 'nvimdev/dashboard-nvim', event = 'VimEnter' },
+  { "rcarriga/nvim-notify" },
+  { "MunifTanjim/nui.nvim" },
+  { 'nvim-tree/nvim-web-devicons' },
+  { 'akinsho/bufferline.nvim' },
+  { "andweeb/presence.nvim" },
+  { 'folke/noice.nvim' },
   { 'nvim-lua/plenary.nvim' },
   { 'nvim-telescope/telescope.nvim' },
   { 'nvim-telescope/telescope-fzf-native.nvim' },
@@ -39,6 +44,7 @@ require('lazy').setup({
   { 'hrsh7th/cmp-path' },
   { 'rafamadriz/friendly-snippets' },
   { 'folke/which-key.nvim' },
+  { 'lukas-reineke/indent-blankline.nvim', main = "ibl", opts = {} },
   { 
     "christoomey/vim-tmux-navigator" ,
     cmd = {
@@ -58,7 +64,6 @@ require('lazy').setup({
 },
 }, {})
 
-require('neodev').setup()
 require("themes")
 require("config")
 require("plugins")
