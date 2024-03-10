@@ -1,15 +1,23 @@
-local builtin = require("telescope.builtin")
-vim.keymap.set("n", "<leader>fg", builtin.live_grep, {})
-vim.keymap.set("n", "<leader>ff", function()
-	builtin.find_files({ hidden = true })
-end, {})
+local fb_actions = require('telescope').extensions.file_browser.actions
 
-require('telescope').setup({
-	defaults = {
-		mappings = {
-			n = {
-				["q"] = require("telescope.actions").close,
-			}
-		}
-	},
-})
+require('telescope').setup {
+  extensions = {
+    file_browser = {
+      hijack_netrw = true,
+      mappings = {
+        ['n'] = {
+          ['N'] = fb_actions.create,
+        },
+      },
+    },
+  },
+  defaults = {
+    mappings = {
+      n = {
+        ['q'] = require('telescope.actions').close,
+      },
+    },
+  },
+}
+
+require('telescope').load_extension 'file_browser'

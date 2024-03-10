@@ -3,6 +3,8 @@ require('conform').setup {
     rust = { 'rustfmt' },
     lua = { 'stylua' },
     nix = { 'alejandra' },
+    c = { 'clang_format' },
+    csharp = { 'dotnet-csharpier' },
   },
 }
 
