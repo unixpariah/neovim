@@ -1,18 +1,30 @@
 {
-  description = "A flake with stylua and lua-language-server";
+  description = "My neovim config";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    flake-utils.url = "github:numtide/flake-utils";
   };
 
   outputs = {
     self,
     nixpkgs,
-  }: {
-    packages.x86_64-linux = {
-      stylua = nixpkgs.legacyPackages.x86_64-linux.stylua;
-      lua-language-server = nixpkgs.legacyPackages.x86_64-linux.lua-language-server;
-    };
-    defaultPackage.x86_64-linux = self.packages.x86_64-linux.stylua;
-  };
+    flake-utils,
+    ...
+  }:
+    flake-utils.lib.eachDefaultSystem (
+      system: let
+        pkgs = import nixpkgs {
+          inherit system;
+        };
+        env = pkgs.mkShell {
+          buildInputs = with pkgs; [
+            lua-language-server
+            stylua
+          ];
+        };
+      in {
+        devShell = env;
+      }
+    );
 }
