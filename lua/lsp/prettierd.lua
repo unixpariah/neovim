@@ -1,6 +1,6 @@
 local nvim_lsp = require 'lspconfig'
 
-nvim_lsp.rnix.setup {
+nvim_lsp.prettierd.setup {
   cmd = { 'prettierd' },
   filetypes = { 'js' },
 }

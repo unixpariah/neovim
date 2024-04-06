@@ -17,6 +17,9 @@ local opts = {
     on_attach = on_attach,
     settings = {
       ['rust-analyzer'] = {
+        cargo = {
+          features = { 'all' },
+        },
         checkOnSave = {
           command = 'clippy',
         },

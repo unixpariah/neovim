@@ -1,6 +1,5 @@
 require 'lsp.rust-analyzer'
 require 'lsp.lua'
-require 'lsp.rnix'
 require 'lsp.clangd'
 require 'lsp.ts'
 require 'lsp.html'
