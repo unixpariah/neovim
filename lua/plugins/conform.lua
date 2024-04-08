@@ -5,6 +5,10 @@ require('conform').setup {
     nix = { 'alejandra' },
     c = { 'clang_format' },
     csharp = { 'dotnet-csharpier' },
+    javascript = { 'prettierd', 'prettier' },
+    javascriptreact = { 'prettierd', 'prettier' },
+    typescript = { 'prettierd', 'prettier' },
+    typescriptreact = { 'prettierd', 'prettier' },
   },
 }
 

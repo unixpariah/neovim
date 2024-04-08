@@ -30,7 +30,11 @@ require('lazy').setup({
   { 'neovim/nvim-lspconfig' },
 
   { 'machakann/vim-highlightedyank' },
-  { 'mrcjkb/rustaceanvim', ft = { 'rust' } },
+  {
+    'mrcjkb/rustaceanvim',
+    version = '^4',
+    ft = { 'rust' },
+  },
   { 'hrsh7th/nvim-cmp' },
   { 'hrsh7th/cmp-vsnip' },
   { 'hrsh7th/vim-vsnip' },
