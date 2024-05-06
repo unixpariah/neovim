@@ -17,24 +17,25 @@ vim.opt.rtp:prepend(lazypath)
 -- Plugins
 require('lazy').setup({
   -- Telescope
-  { 'nvim-telescope/telescope-file-browser.nvim' },
   { 'nvim-telescope/telescope.nvim' },
   { 'nvim-telescope/telescope-fzf-native.nvim' },
-
-  -- Copilot
-  { 'CopilotC-Nvim/CopilotChat.nvim' },
-  { 'github/copilot.vim' },
-
   -- Lsp
   { 'hrsh7th/cmp-nvim-lsp' },
   { 'neovim/nvim-lspconfig' },
 
+  {
+    'stevearc/oil.nvim',
+    opts = {},
+    -- Optional dependencies
+    dependencies = { 'nvim-tree/nvim-web-devicons' },
+  },
   { 'machakann/vim-highlightedyank' },
   {
     'mrcjkb/rustaceanvim',
     version = '^4',
     ft = { 'rust' },
   },
+  { 'ziglang/zig.vim', ft = { 'zig' } },
   { 'hrsh7th/nvim-cmp' },
   { 'hrsh7th/cmp-vsnip' },
   { 'hrsh7th/vim-vsnip' },
@@ -67,3 +68,4 @@ require 'themes'
 require 'config'
 require 'plugins'
 require 'lsp'
+require('oil').setup()

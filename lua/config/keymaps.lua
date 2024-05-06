@@ -20,13 +20,4 @@ vim.api.nvim_set_keymap('n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', { noremap 
 vim.api.nvim_set_keymap('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>', { noremap = true, silent = true, desc = 'Go to declaration' })
 vim.api.nvim_set_keymap('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', { noremap = true, silent = true, desc = 'Go to definition' })
 
--- Copilot
-vim.keymap.set('i', '<C-g>', 'copilot#Accept("\\<CR>")', {
-  expr = true,
-  replace_keycodes = false,
-})
-vim.g.copilot_no_tab_map = true
-vim.g.copilot_assume_mapped = true
-
--- Telescope fb
-vim.api.nvim_set_keymap('n', '<space>fb', '<cmd>Telescope file_browser path=%:p:h select_buffer=true<CR>', { noremap = true })
+vim.keymap.set('n', '-', '<CMD>Oil<CR>', { desc = 'Open parent directory' })

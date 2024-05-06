@@ -9,6 +9,8 @@ require('conform').setup {
     javascriptreact = { 'prettierd', 'prettier' },
     typescript = { 'prettierd', 'prettier' },
     typescriptreact = { 'prettierd', 'prettier' },
+    asm = { 'asmfmt' },
+    zig = { 'zig fmt' },
   },
 }
 
