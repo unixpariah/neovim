@@ -2,28 +2,66 @@
   description = "My neovim config";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-    flake-utils.url = "github:numtide/flake-utils";
+    nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
+    utils.url = "github:numtide/flake-utils";
   };
 
   outputs = {
+    self,
     nixpkgs,
-    flake-utils,
+    utils,
     ...
   }:
-    flake-utils.lib.eachDefaultSystem (
+    utils.lib.eachDefaultSystem (
       system: let
-        pkgs = import nixpkgs {
-          inherit system;
+        inherit (nixpkgs) lib;
+        pkgs = nixpkgs.legacyPackages.${system};
+        runtimeDeps = with pkgs; [
+          gcc
+          nil
+          alejandra
+          nodejs_22
+          tree-sitter
+          fd
+          ripgrep
+          gnome3.adwaita-icon-theme
+        ];
+
+        nvim =
+          pkgs.wrapNeovimUnstable pkgs.neovim-unwrapped
+          (pkgs.neovimUtils.makeNeovimConfig
+            {
+              customRC = ''
+                set runtimepath^=${./.}
+                source ${./.}/init.lua
+              '';
+            }
+            // {
+              wrapperArgs = [
+                "--prefix"
+                "PATH"
+                ":"
+                "${lib.makeBinPath runtimeDeps}"
+              ];
+            });
+      in {
+        overlays = {
+          neovim = _: _prev: {
+            neovim = nvim;
+          };
+          default = self.overlays.neovim;
         };
-        env = pkgs.mkShell {
-          buildInputs = with pkgs; [
-            lua-language-server
-            stylua
+
+        packages = rec {
+          neovim = nvim;
+          default = neovim;
+        };
+
+        devShells.default = pkgs.mkShell {
+          nativeBuildInputs = [
+            pkgs.stylua
           ];
         };
-      in {
-        devShell = env;
       }
     );
 }
